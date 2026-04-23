@@ -3,60 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Seller - Cuddleme</title>
+    <title>Cuddleme Seller Report Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-5">
-        <h1 class="text-3xl font-bold text-center mb-5">Laporan Seller Cuddleme</h1>
-        <form class="bg-white p-5 rounded shadow-md">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-gray-700">Product Category</label>
-                    <select class="form-select mt-1 block w-full" required>
-                        <option value="">Select a category</option>
-                        <option value="Travego Carrier">Travego Carrier</option>
-                        <option value="Ultimo Carrier">Ultimo Carrier</option>
-                        <option value="Bamboo Sling">Bamboo Sling</option>
-                        <option value="ATP">ATP</option>
-                        <option value="Airsling">Airsling</option>
-                        <option value="Baby Cape">Baby Cape</option>
-                        <option value="Babywearing Fleece Jacket">Babywearing Fleece Jacket</option>
-                        <option value="Blanket">Blanket</option>
-                        <option value="Bobalimut">Bobalimut</option>
-                        <option value="Crawling Jegging">Crawling Jegging</option>
-                        <option value="Diaper Bag">Diaper Bag</option>
-                        <option value="Drypad">Drypad</option>
-                        <option value="Fitted Booties">Fitted Booties</option>
-                        <option value="Floswim">Floswim</option>
-                        <option value="Foldable Nursing Pillow">Foldable Nursing Pillow</option>
-                        <option value="Foot Strap">Foot Strap</option>
-                        <option value="Gendongan Permata">Gendongan Permata</option>
-                        <option value="Geosfit Air">Geosfit Air</option>
-                        <option value="Goswim">Goswim</option>
-                        <option value="Hipseat">Hipseat</option>
-                        <option value="Hoodie">Hoodie</option>
-                        <option value="Hybrid Swaddlepod">Hybrid Swaddlepod</option>
-                        <option value="Infant Insert">Infant Insert</option>
-                        <option value="Jacket APD">Jacket APD</option>
-                        <option value="Laundry Net">Laundry Net</option>
-                        <option value="Levana Air Carrier">Levana Air Carrier</option>
-                        <option value="Lite Carrier">Lite Carrier</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-gray-700">Stock Quantity</label>
-                    <input type="number" class="form-input mt-1 block w-full" placeholder="Enter stock quantity" required />
-                </div>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+        <h1 class="text-3xl font-bold mb-5">Cuddleme Seller Report Form</h1>
+        <form id="cuddleme-form">
+            <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Product inputs will be inserted here -->
             </div>
-            <div class="mt-4">
-                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Submit</button>
-            </div>
+            <button type="button" onclick="sendForm()" class="mt-5 bg-blue-500 text-white px-4 py-2 rounded">Send</button>
         </form>
-        <div class="mt-5 text-center">
-            <h2 class="text-xl font-semibold">Contact Support</h2>
-            <a href="https://wa.me/085792242858" class="text-blue-500">WhatsApp Support</a>
-        </div>
     </div>
+    <script>
+        const products = [
+            { name: 'Travego Carrier', variants: ['Variant 1', 'Variant 2'], price: 500 },
+            { name: 'Ultimo Carrier', variants: ['Variant 1', 'Variant 2'], price: 450 },
+            { name: 'Bamboo Sling', variants: ['Variant 1', 'Variant 2'], price: 350 },
+            { name: 'ATP', variants: ['Variant 1', 'Variant 2'], price: 600 },
+            { name: 'Airsling', variants: ['Variant 1', 'Variant 2'], price: 400 },
+            { name: 'Baby Cape', variants: ['Variant 1', 'Variant 2'], price: 300 },
+            { name: 'Babywearing Fleece Jacket', variants: ['Variant 1', 'Variant 2'], price: 700 },
+            { name: 'Blanket', variants: ['Variant 1', 'Variant 2'], price: 250 },
+            { name: 'Bobalimut', variants: ['Variant 1', 'Variant 2'], price: 150 },
+            { name: 'Crawling Jegging', variants: ['Variant 1', 'Variant 2'], price: 100 },
+            { name: 'Diaper Bag', variants: ['Variant 1', 'Variant 2'], price: 550 },
+            { name: 'Drypad', variants: ['Variant 1', 'Variant 2'], price: 450 },
+            { name: 'Fitted Booties', variants: ['Variant 1', 'Variant 2'], price: 200 },
+            { name: 'Floswim', variants: ['Variant 1', 'Variant 2'], price: 300 },
+            { name: 'Foldable Nursing Pillow', variants: ['Variant 1', 'Variant 2'], price: 350 },
+            { name: 'Foot Strap', variants: ['Variant 1', 'Variant 2'], price: 150 },
+            { name: 'Gendongan Permata', variants: ['Variant 1', 'Variant 2'], price: 250 },
+            { name: 'Geosfit Air', variants: ['Variant 1', 'Variant 2'], price: 400 },
+            { name: 'Goswim', variants: ['Variant 1', 'Variant 2'], price: 500 },
+            { name: 'Hipseat', variants: ['Variant 1', 'Variant 2'], price: 600 },
+            { name: 'Hoodie', variants: ['Variant 1', 'Variant 2'], price: 700 },
+            { name: 'Hybrid Swaddlepod', variants: ['Variant 1', 'Variant 2'], price: 450 },
+            { name: 'Infant Insert', variants: ['Variant 1', 'Variant 2'], price: 350 },
+            { name: 'Jacket APD', variants: ['Variant 1', 'Variant 2'], price: 400 },
+            { name: 'Laundry Net', variants: ['Variant 1', 'Variant 2'], price: 150 },
+            { name: 'Levana Air Carrier', variants: ['Variant 1', 'Variant 2'], price: 550 },
+            { name: 'Lite Carrier', variants: ['Variant 1', 'Variant 2'], price: 600 }
+        ];
+
+        const productContainer = document.getElementById('product-container');
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('border', 'p-4', 'rounded');
+            productDiv.innerHTML = `<h2 class='font-bold'>${product.name}</h2>`;
+            product.variants.forEach(variant => {
+                productDiv.innerHTML += `<label class='block mt-2'>${variant} - $${product.price}</label>`;
+                productDiv.innerHTML += `<input type='number' min='0' class='mt-1 p-1 border rounded' placeholder='Quantity'>`;
+            });
+            productContainer.appendChild(productDiv);
+        });
+
+        function sendForm() {
+            const formData = [];
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                if (input.value) {
+                    formData.push({ quantity: input.value });
+                }
+            });
+            const message = encodeURIComponent(JSON.stringify(formData));
+            const whatsappNumber = '085792242858';
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`);  
+        }
+    </script>
 </body>
 </html>
